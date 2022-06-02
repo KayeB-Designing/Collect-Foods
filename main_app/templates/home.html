@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Collect Foods</title>
+    </head>
+    <body>
+        {% extends 'base.html' %}
+        {% block content %}
+        
+        <hr>
+        <h2 class="title is-3 has-text-success">These are favorites!</h2>
+        <hr>
+        <h3 class="title is-4">Foods</h3>
+        
+          <div class="gallery">
+            {% for food in foods %}
+            {% if food.favorite_food %}
+            <a href="{% url 'food_detail' food.pk %}">
+              <div class="card">
+                <div class="card-image">
+                  <figure class="image is-square">
+                    <img src="{{food.image}}" alt="{{food.name}}" />
+                  </figure>
+                </div>
+                <div class="card-header">
+                  <p class="card-header-title">{{food.name}}</p>
+                </div>
+              </div>
+            </a>
+            {% endif %}
+              {% empty %}
+            <article class="message">
+              <div class="message-header">
+                <p>No Foods Available</p>
+              </div>
+            </article>
+            {% endfor %}
+          </div>
+
+          <br>
+          <h3  class="title is-4">Recipes</h3>
+            <div class="gallery">
+              {% for recipe in recipes %}
+              {% if recipe.favorite_recipe %}
+              <a href="{% url 'recipe_detail' recipe.pk %}">
+                <div class="card">
+                  <div class="card-image">
+                    <figure class="image is-square">
+                      <img src="{{recipe.image}}" alt="{{recipe.name}}" />
+                    </figure>
+                  </div>
+                  <div class="card-header">
+                    <p class="card-header-title">{{recipe.name}}</p>
+                  </div>
+                </div>
+              </a>
+              {% endif %}
+                {% empty %}
+              <article class="message">
+                <div class="message-header">
+                  <p>No Recipes Available</p>
+                </div>
+              </article>
+              {% endfor %}
+            </div>
+            <br>
+        <hr>
+        <h2 class="title is-3 has-text-success">These are budget friendly!</h2>
+        <hr>
+        <br>
+        <h3  class="title is-4" >Foods</h3>
+          <div class="gallery">
+            {% for food in foods %}
+            {% if food.budget_item %}
+            <a href="{% url 'food_detail' food.pk %}">
+              <div class="card">
+                <div class="card-image">
+                  <figure class="image is-square">
+                    <img src="{{food.image}}" alt="{{food.name}}" />
+                  </figure>
+                </div>
+                <div class="card-header">
+                  <p class="card-header-title">{{food.name}}</p>
+                </div>
+              </div>
+            </a>
+            {% endif %}
+              {% empty %}
+            <article class="message">
+              <div class="message-header">
+                <p>No Foods Available</p>
+              </div>
+            </article>
+            {% endfor %}
+          </div>
+
+          <br>
+          <h3  class="title is-4">Recipes</h3>
+            <div class="gallery">
+              {% for recipe in recipes %}
+              {% if recipe.budget_meal %}
+              <a href="{% url 'recipe_detail' recipe.pk %}">
+                <div class="card">
+                  <div class="card-image">
+                    <figure class="image is-square">
+                      <img src="{{recipe.image}}" alt="{{recipe.name}}" />
+                    </figure>
+                  </div>
+                  <div class="card-header">
+                    <p class="card-header-title">{{recipe.name}}</p>
+                  </div>
+                </div>
+              </a>
+              {% endif %}
+                {% empty %}
+              <article class="message">
+                <div class="message-header">
+                  <p>No Recipes Available</p>
+                </div>
+              </article>
+              {% endfor %}
+            </div>
+
+            <br>
+        <hr>
+        <h2 class="title is-3 has-text-success">These are a staple!</h2>
+        <hr>
+        <br>
+        <h3  class="title is-4" >Foods</h3>
+          <div class="gallery">
+            {% for food in foods %}
+            {% if food.pantry_staple %}
+            <a href="{% url 'food_detail' food.pk %}">
+              <div class="card">
+                <div class="card-image">
+                  <figure class="image is-square">
+                    <img src="{{food.image}}" alt="{{food.name}}" />
+                  </figure>
+                </div>
+                <div class="card-header">
+                  <p class="card-header-title">{{food.name}}</p>
+                </div>
+              </div>
+            </a>
+            {% endif %}
+              {% empty %}
+            <article class="message">
+              <div class="message-header">
+                <p>No Foods Available</p>
+              </div>
+            </article>
+            {% endfor %}
+          </div>
+
+          <br>
+          <h3  class="title is-4">Recipes</h3>
+            <div class="gallery">
+              {% for recipe in recipes %}
+              {% if recipe.staple_meal %}
+              <a href="{% url 'recipe_detail' recipe.pk %}">
+                <div class="card">
+                  <div class="card-image">
+                    <figure class="image is-square">
+                      <img src="{{recipe.image}}" alt="{{recipe.name}}" />
+                    </figure>
+                  </div>
+                  <div class="card-header">
+                    <p class="card-header-title">{{recipe.name}}</p>
+                  </div>
+                </div>
+              </a>
+              {% endif %}
+                {% empty %}
+              <article class="message">
+                <div class="message-header">
+                  <p>No Recipes Available</p>
+                </div>
+              </article>
+              {% endfor %}
+            </div>
+
+            <br>
+        <hr>
+        <h2 class="title is-3 has-text-success">These are kid approved!</h2>
+        <hr>
+        <br>
+        <h3  class="title is-4" >Foods</h3>
+          <div class="gallery">
+            {% for food in foods %}
+            {% if food.kid_approved %}
+            <a href="{% url 'food_detail' food.pk %}">
+              <div class="card">
+                <div class="card-image">
+                  <figure class="image is-square">
+                    <img src="{{food.image}}" alt="{{food.name}}" />
+                  </figure>
+                </div>
+                <div class="card-header">
+                  <p class="card-header-title">{{food.name}}</p>
+                </div>
+              </div>
+            </a>
+            {% endif %}
+              {% empty %}
+            <article class="message">
+              <div class="message-header">
+                <p>No Foods Available</p>
+              </div>
+            </article>
+            {% endfor %}
+          </div>
+
+          <br>
+          <h3  class="title is-4">Recipes</h3>
+            <div class="gallery">
+              {% for recipe in recipes %}
+              {% if recipe.kid_approved %}
+              <a href="{% url 'recipe_detail' recipe.pk %}">
+                <div class="card">
+                  <div class="card-image">
+                    <figure class="image is-square">
+                      <img src="{{recipe.image}}" alt="{{recipe.name}}" />
+                    </figure>
+                  </div>
+                  <div class="card-header">
+                    <p class="card-header-title">{{recipe.name}}</p>
+                  </div>
+                </div>
+              </a>
+              {% endif %}
+                {% empty %}
+              <article class="message">
+                <div class="message-header">
+                  <p>No Recipes Available</p>
+                </div>
+              </article>
+              {% endfor %}
+            </div>
+
+            <br>
+        <hr>
+        <h2 class="title is-3 has-text-success">These are picky eater approved!</h2>
+        <hr>
+        <br>
+        <h3  class="title is-4" >Foods</h3>
+          <div class="gallery">
+            {% for food in foods %}
+            {% if food.picky_approved %}
+            <a href="{% url 'food_detail' food.pk %}">
+              <div class="card">
+                <div class="card-image">
+                  <figure class="image is-square">
+                    <img src="{{food.image}}" alt="{{food.name}}" />
+                  </figure>
+                </div>
+                <div class="card-header">
+                  <p class="card-header-title">{{food.name}}</p>
+                </div>
+              </div>
+            </a>
+            {% endif %}
+              {% empty %}
+            <article class="message">
+              <div class="message-header">
+                <p>No Foods Available</p>
+              </div>
+            </article>
+            {% endfor %}
+          </div>
+
+          <br>
+          <h3  class="title is-4">Recipes</h3>
+            <div class="gallery">
+              {% for recipe in recipes %}
+              {% if recipe.picky_approved %}
+              <a href="{% url 'recipe_detail' recipe.pk %}">
+                <div class="card">
+                  <div class="card-image">
+                    <figure class="image is-square">
+                      <img src="{{recipe.image}}" alt="{{recipe.name}}" />
+                    </figure>
+                  </div>
+                  <div class="card-header">
+                    <p class="card-header-title">{{recipe.name}}</p>
+                  </div>
+                </div>
+              </a>
+              {% endif %}
+                {% empty %}
+              <article class="message">
+                <div class="message-header">
+                  <p>No Recipes Available</p>
+                </div>
+              </article>
+              {% endfor %}
+            </div>
+
+            <br>
+        <hr>
+        <h2 class="title is-3 has-text-success">These need little to no prepping or cooking!</h2>
+        <hr>
+        <br>
+        <h3  class="title is-4" >Foods</h3>
+          <div class="gallery">
+            {% for food in foods %}
+            {% if food.eat_alone %}
+            <a href="{% url 'food_detail' food.pk %}">
+              <div class="card">
+                <div class="card-image">
+                  <figure class="image is-square">
+                    <img src="{{food.image}}" alt="{{food.name}}" />
+                  </figure>
+                </div>
+                <div class="card-header">
+                  <p class="card-header-title">{{food.name}}</p>
+                </div>
+              </div>
+            </a>
+            {% endif %}
+              {% empty %}
+            <article class="message">
+              <div class="message-header">
+                <p>No Foods Available</p>
+              </div>
+            </article>
+            {% endfor %}
+          </div>
+
+          <br>
+          <h3  class="title is-4">Recipes</h3>
+            <div class="gallery">
+              {% for recipe in recipes %}
+              {% if recipe.easy_prep %}
+              <a href="{% url 'recipe_detail' recipe.pk %}">
+                <div class="card">
+                  <div class="card-image">
+                    <figure class="image is-square">
+                      <img src="{{recipe.image}}" alt="{{recipe.name}}" />
+                    </figure>
+                  </div>
+                  <div class="card-header">
+                    <p class="card-header-title">{{recipe.name}}</p>
+                  </div>
+                </div>
+              </a>
+              {% endif %}
+                {% empty %}
+              <article class="message">
+                <div class="message-header">
+                  <p>No Recipes Available</p>
+                </div>
+              </article>
+              {% endfor %}
+            </div>
+
+            <br>
+        <hr>
+        <h2 class="title is-3 has-text-success">These are sick friendly!</h2>
+        <hr>
+        <br>
+        <h3  class="title is-4" >Foods</h3>
+          <div class="gallery">
+            {% for food in foods %}
+            {% if food.sick_friendly %}
+            <a href="{% url 'food_detail' food.pk %}">
+              <div class="card">
+                <div class="card-image">
+                  <figure class="image is-square">
+                    <img src="{{food.image}}" alt="{{food.name}}" />
+                  </figure>
+                </div>
+                <div class="card-header">
+                  <p class="card-header-title">{{food.name}}</p>
+                </div>
+              </div>
+            </a>
+            {% endif %}
+              {% empty %}
+            <article class="message">
+              <div class="message-header">
+                <p>No Foods Available</p>
+              </div>
+            </article>
+            {% endfor %}
+          </div>
+
+          <br>
+          <h3  class="title is-4">Recipes</h3>
+            <div class="gallery">
+              {% for recipe in recipes %}
+              {% if recipe.sick_friendly %}
+              <a href="{% url 'recipe_detail' recipe.pk %}">
+                <div class="card">
+                  <div class="card-image">
+                    <figure class="image is-square">
+                      <img src="{{recipe.image}}" alt="{{recipe.name}}" />
+                    </figure>
+                  </div>
+                  <div class="card-header">
+                    <p class="card-header-title">{{recipe.name}}</p>
+                  </div>
+                </div>
+              </a>
+              {% endif %}
+                {% empty %}
+              <article class="message">
+                <div class="message-header">
+                  <p>No Recipes Available</p>
+                </div>
+              </article>
+              {% endfor %}
+            </div>
+
+            <br>
+        <hr>
+        <h2 class="title is-3 has-text-success">These take little mental spoons!</h2>
+        <hr>
+        <br>
+        <h3  class="title is-4" >Foods</h3>
+          <div class="gallery">
+            {% for food in foods %}
+            {% if food.low_spoons %}
+            <a href="{% url 'food_detail' food.pk %}">
+              <div class="card">
+                <div class="card-image">
+                  <figure class="image is-square">
+                    <img src="{{food.image}}" alt="{{food.name}}" />
+                  </figure>
+                </div>
+                <div class="card-header">
+                  <p class="card-header-title">{{food.name}}</p>
+                </div>
+              </div>
+            </a>
+            {% endif %}
+              {% empty %}
+            <article class="message">
+              <div class="message-header">
+                <p>No Foods Available</p>
+              </div>
+            </article>
+            {% endfor %}
+          </div>
+
+          <br>
+          <h3  class="title is-4">Recipes</h3>
+            <div class="gallery">
+              {% for recipe in recipes %}
+              {% if recipe.low_spoons %}
+              <a href="{% url 'recipe_detail' recipe.pk %}">
+                <div class="card">
+                  <div class="card-image">
+                    <figure class="image is-square">
+                      <img src="{{recipe.image}}" alt="{{recipe.name}}" />
+                    </figure>
+                  </div>
+                  <div class="card-header">
+                    <p class="card-header-title">{{recipe.name}}</p>
+                  </div>
+                </div>
+              </a>
+              {% endif %}
+                {% empty %}
+              <article class="message">
+                <div class="message-header">
+                  <p>No Recipes Available</p>
+                </div>
+              </article>
+              {% endfor %}
+            </div>
+
+            <br>
+        <hr>
+        <h2 class="title is-3 has-text-success">These are texture friendly!</h2>
+        <hr>
+        <br>
+        <h3  class="title is-4" >Foods</h3>
+          <div class="gallery">
+            {% for food in foods %}
+            {% if food.texture_friendly %}
+            <a href="{% url 'food_detail' food.pk %}">
+              <div class="card">
+                <div class="card-image">
+                  <figure class="image is-square">
+                    <img src="{{food.image}}" alt="{{food.name}}" />
+                  </figure>
+                </div>
+                <div class="card-header">
+                  <p class="card-header-title">{{food.name}}</p>
+                </div>
+              </div>
+            </a>
+            {% endif %}
+              {% empty %}
+            <article class="message">
+              <div class="message-header">
+                <p>No Foods Available</p>
+              </div>
+            </article>
+            {% endfor %}
+          </div>
+
+          <br>
+          <h3  class="title is-4">Recipes</h3>
+            <div class="gallery">
+              {% for recipe in recipes %}
+              {% if recipe.texture_friendly %}
+              <a href="{% url 'recipe_detail' recipe.pk %}">
+                <div class="card">
+                  <div class="card-image">
+                    <figure class="image is-square">
+                      <img src="{{recipe.image}}" alt="{{recipe.name}}" />
+                    </figure>
+                  </div>
+                  <div class="card-header">
+                    <p class="card-header-title">{{recipe.name}}</p>
+                  </div>
+                </div>
+              </a>
+              {% endif %}
+                {% empty %}
+              <article class="message">
+                <div class="message-header">
+                  <p>No Recipes Available</p>
+                </div>
+              </article>
+              {% endfor %}
+            </div>
+
+            <br>
+        <hr>
+        <h2 class="title is-3 has-text-success">These are color friendly!</h2>
+        <hr>
+        <br>
+        <h3  class="title is-4" >Foods</h3>
+          <div class="gallery">
+            {% for food in foods %}
+            {% if food.color_friendly %}
+            <a href="{% url 'food_detail' food.pk %}">
+              <div class="card">
+                <div class="card-image">
+                  <figure class="image is-square">
+                    <img src="{{food.image}}" alt="{{food.name}}" />
+                  </figure>
+                </div>
+                <div class="card-header">
+                  <p class="card-header-title">{{food.name}}</p>
+                </div>
+              </div>
+            </a>
+            {% endif %}
+              {% empty %}
+            <article class="message">
+              <div class="message-header">
+                <p>No Foods Available</p>
+              </div>
+            </article>
+            {% endfor %}
+          </div>
+
+          <br>
+          <h3  class="title is-4">Recipes</h3>
+            <div class="gallery">
+              {% for recipe in recipes %}
+              {% if recipe.color_friendly %}
+              <a href="{% url 'recipe_detail' recipe.pk %}">
+                <div class="card">
+                  <div class="card-image">
+                    <figure class="image is-square">
+                      <img src="{{recipe.image}}" alt="{{recipe.name}}" />
+                    </figure>
+                  </div>
+                  <div class="card-header">
+                    <p class="card-header-title">{{recipe.name}}</p>
+                  </div>
+                </div>
+              </a>
+              {% endif %}
+                {% empty %}
+              <article class="message">
+                <div class="message-header">
+                  <p>No Recipes Available</p>
+                </div>
+              </article>
+              {% endfor %}
+            </div>
+
+            <br>
+        <hr>
+        <h2 class="title is-3 has-text-success">These are ARFID safe!</h2>
+        <hr>
+        <br>
+        <h3  class="title is-4" >Foods</h3>
+          <div class="gallery">
+            {% for food in foods %}
+            {% if food.arfid_approved %}
+            <a href="{% url 'food_detail' food.pk %}">
+              <div class="card">
+                <div class="card-image">
+                  <figure class="image is-square">
+                    <img src="{{food.image}}" alt="{{food.name}}" />
+                  </figure>
+                </div>
+                <div class="card-header">
+                  <p class="card-header-title">{{food.name}}</p>
+                </div>
+              </div>
+            </a>
+            {% endif %}
+              {% empty %}
+            <article class="message">
+              <div class="message-header">
+                <p>No Foods Available</p>
+              </div>
+            </article>
+            {% endfor %}
+          </div>
+
+          <br>
+          <h3  class="title is-4">Recipes</h3>
+            <div class="gallery">
+              {% for recipe in recipes %}
+              {% if recipe.arfid_approved %}
+              <a href="{% url 'recipe_detail' recipe.pk %}">
+                <div class="card">
+                  <div class="card-image">
+                    <figure class="image is-square">
+                      <img src="{{recipe.image}}" alt="{{recipe.name}}" />
+                    </figure>
+                  </div>
+                  <div class="card-header">
+                    <p class="card-header-title">{{recipe.name}}</p>
+                  </div>
+                </div>
+              </a>
+              {% endif %}
+                {% empty %}
+              <article class="message">
+                <div class="message-header">
+                  <p>No Recipes Available</p>
+                </div>
+              </article>
+              {% endfor %}
+            </div>
+
+            <br>
+        <hr>
+        <h2 class="title is-3 has-text-success">These are diet friendly!</h2>
+        <hr>
+        <br>
+        <h3  class="title is-4" >Foods</h3>
+          <div class="gallery">
+            {% for food in foods %}
+            {% if food.diet_friendly %}
+            <a href="{% url 'food_detail' food.pk %}">
+              <div class="card">
+                <div class="card-image">
+                  <figure class="image is-square">
+                    <img src="{{food.image}}" alt="{{food.name}}" />
+                  </figure>
+                </div>
+                <div class="card-header">
+                  <p class="card-header-title">{{food.name}}</p>
+                </div>
+              </div>
+            </a>
+            {% endif %}
+              {% empty %}
+            <article class="message">
+              <div class="message-header">
+                <p>No Foods Available</p>
+              </div>
+            </article>
+            {% endfor %}
+          </div>
+
+          <br>
+          <h3  class="title is-4">Recipes</h3>
+            <div class="gallery">
+              {% for recipe in recipes %}
+              {% if recipe.diet_friendly %}
+              <a href="{% url 'recipe_detail' recipe.pk %}">
+                <div class="card">
+                  <div class="card-image">
+                    <figure class="image is-square">
+                      <img src="{{recipe.image}}" alt="{{recipe.name}}" />
+                    </figure>
+                  </div>
+                  <div class="card-header">
+                    <p class="card-header-title">{{recipe.name}}</p>
+                  </div>
+                </div>
+              </a>
+              {% endif %}
+                {% empty %}
+              <article class="message">
+                <div class="message-header">
+                  <p>No Recipes Available</p>
+                </div>
+              </article>
+              {% endfor %}
+            </div>
+
+
+        {% endblock %}
+    </body>
+</html>

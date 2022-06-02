@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% comment %} for head title tags and helping us with SEO {% endcomment %}
+{% block title %}Food{% endblock  %}
+
+{% block content %}
+
+<h1 class="title pt-5">{{header}}</h1>
+
+<form class="mb-5" method="get">
+  <div class="field has-addons">
+    <div class="control">
+      <input class="input" type="text" name="name" placeholder="name" />
+    </div>
+    <div class="control">
+      <input class="button is-success" type="submit" value="Search" />
+    </div>
+  </div>
+  <a class="button is-dark" href="{% url 'food_list' %}">Clear Search</a>
+</form>
+
+<a class="button is-dark" href="{% url 'food_create' %}">Add Food</a>
+
+<div class="gallery">
+  {% for food in foods %}
+  <a href="{% url 'food_detail' food.pk %}">
+    <div class="card">
+      <div class="card-image">
+        <figure class="image is-square">
+          <img src="{{food.image}}" alt="{{food.name}}" />
+        </figure>
+      </div>
+      <div class="card-header">
+        <p class="card-header-title">{{food.name}}</p>
+      </div>
+    </div>
+  </a>
+	{% empty %}
+  <article class="message">
+    <div class="message-header">
+      <p>No Foods Available</p>
+    </div>
+  </article>
+  {% endfor %}
+</div>
+{% endblock %}

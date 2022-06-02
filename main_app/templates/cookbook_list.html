@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% comment %} for head title tags and helping us with SEO {% endcomment %}
+{% block title %}Cookbook{% endblock  %}
+
+{% block content %}
+
+<h1 class="title pt-5">{{header}}</h1>
+<form class="mb-5" method="get">
+  <div class="field has-addons">
+    <div class="control">
+      <input class="input" type="text" name="name" placeholder="name" />
+    </div>
+    <div class="control">
+      <input class="button is-success" type="submit" value="Search" />
+    </div>
+  </div>
+  <a class="button is-dark" href="{% url 'cookbook_list' %}">Clear Search</a>
+</form>
+<a class="button is-dark" href="{% url 'cookbook_create' %}">Add Cookbook</a>
+<div class="gallery">
+  {% for cookbook in cookbooks %}
+  <a href="{% url 'cookbook_detail' cookbook.pk %}">
+    <div class="card">
+      <div class="card-image">
+        <figure class="image is-square">
+          <img src="{{cookbook.image}}" alt="{{cookbook.name}}" />
+        </figure>
+      </div>
+      <div class="card-header">
+        <p class="card-header-title">{{cookbook.name}}</p>
+      </div>
+    </div>
+  </a>
+	{% empty %}
+  <article class="message">
+    <div class="message-header">
+      <p>No Cookbooks Available</p>
+    </div>
+  </article>
+  {% endfor %}
+</div>
+{% endblock %}

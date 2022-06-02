@@ -1,0 +1,141 @@
+{% extends 'base.html' %} 
+{% block content %}
+<div class="detail__img">
+    <img src="{{food.image}}" alt="{{food.name}}" />
+</div>
+<div class="detail__name">
+    <h1 class="title">{{food.name}}</h1>
+    {% if food.favorite_food %}
+    <div class="icon-text">
+        <span class="icon has-text-info">
+            <i class="fas fa-check-circle"></i>
+        </span>
+        <span>This is a favorite food!</span>
+    </div>
+    {% endif %}
+    {% if food.budget_item %}
+    <div class="icon-text">
+        <span class="icon has-text-info">
+            <i class="fas fa-check-circle"></i>
+        </span>
+        <span>This is a budget friendly food!</span>
+    </div>
+    {% endif %}
+    {% if food.pantry_staple %}
+    <div class="icon-text">
+        <span class="icon has-text-info">
+            <i class="fas fa-check-circle"></i>
+        </span>
+        <span>This is a pantry staple!</span>
+    </div>
+    {% endif %}
+    {% if food.kid_approved %}
+    <div class="icon-text">
+        <span class="icon has-text-info">
+            <i class="fas fa-check-circle"></i>
+        </span>
+        <span>This is a kid approved food!</span>
+    </div>
+    {% endif %}
+    {% if food.picky_approved %}
+    <div class="icon-text">
+        <span class="icon has-text-info">
+            <i class="fas fa-check-circle"></i>
+        </span>
+        <span>This is a picky eaters approved food!</span>
+    </div>
+    {% endif %}
+    {% if food.eat_alone %}
+    <div class="icon-text">
+        <span class="icon has-text-info">
+            <i class="fas fa-check-circle"></i>
+        </span>
+        <span>This is a food you can eat on it's own with little to no prep or cooking!</span>
+    </div>
+    {% endif %}
+    {% if food.sick_friendly %}
+    <div class="icon-text">
+        <span class="icon has-text-info">
+            <i class="fas fa-check-circle"></i>
+        </span>
+        <span>This is a food you can eat while sick!</span>
+    </div>
+    {% endif %}
+    {% if food.low_spoons %}
+    <div class="icon-text">
+        <span class="icon has-text-info">
+            <i class="fas fa-check-circle"></i>
+        </span>
+        <span>This is a low mental spoons food!</span>
+    </div>
+    {% endif %}
+    {% if food.texture_friendly %}
+    <div class="icon-text">
+        <span class="icon has-text-info">
+            <i class="fas fa-check-circle"></i>
+        </span>
+        <span>This is a texture friendly food!</span>
+    </div>
+    {% endif %}
+    {% if food.color_friendly %}
+    <div class="icon-text">
+        <span class="icon has-text-info">
+            <i class="fas fa-check-circle"></i>
+        </span>
+        <span>This is a color friendly food!</span>
+    </div>
+    {% endif %}
+    {% if food.arfid_approved %}
+    <div class="icon-text">
+        <span class="icon has-text-info">
+            <i class="fas fa-check-circle"></i>
+        </span>
+        <span>This is an ARFID safe food!</span>
+    </div>
+    {% endif %}
+    {% if food.diet_friendly %}
+    <div class="icon-text">
+        <span class="icon has-text-info">
+            <i class="fas fa-check-circle"></i>
+        </span>
+        <span>This is an diet friendly food!</span>
+    </div>
+    {% endif %}
+</div>
+<div class="detail__container">
+    <div class="buttons">
+        <a href="{% url 'food_update' food.pk %}" class="button is-info">
+            <span class="icon">
+                <i class="fas fa-edit"></i>
+            </span>
+        </a>
+        <a href="{% url 'food_delete' food.pk %}" class="button is-danger">
+            <span class="icon">
+                <i class="fas fa-trash-alt"></i>
+            </span>
+        </a>
+    </div>
+    <hr>
+    <div class="detail__about">
+        <h4 class="title is-4">Notes:</h4>
+        <p>{{food.notes}}</p>
+    </div>
+    <br>
+    <hr>
+    <div class="home__playlists">
+        <div class="playlist mb-5">
+            <h3 class="title is-3 has-text-success">Recipes using {{food.name}}</h3>
+            <hr />
+            {% for recipe in recipes %}
+                {% if food in recipe.foods.all %}
+                    <div class="song">
+                        <span><b><a href="{% url 'recipe_detail' recipe.pk %}">{{recipe.name}}</a></b></span>
+                    </div>
+                {% endif %}
+            {% empty %} 
+                <div class="playlist mb-5">No Recipes Use This Food!</div>
+            {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

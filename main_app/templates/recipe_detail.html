@@ -1,0 +1,165 @@
+{% extends 'base.html' %} 
+{% block content %}
+<div class="detail__img">
+    <img src="{{recipe.image}}" alt="{{recipe.name}}" />
+</div>
+<div class="detail__name">
+    <h1 class="title">{{recipe.name}}</h1>
+    {% if recipe.favorite_recipe %}
+    <div class="icon-text">
+        <span class="icon has-text-info">
+            <i class="fas fa-check-circle"></i>
+        </span>
+        <span>This is a favorite recipe!</span>
+    </div>
+    {% endif %}
+    {% if recipe.budget_meal %}
+    <div class="icon-text">
+        <span class="icon has-text-info">
+            <i class="fas fa-check-circle"></i>
+        </span>
+        <span>This is a budget friendly meal!</span>
+    </div>
+    {% endif %}
+    {% if recipe.staple_meal %}
+    <div class="icon-text">
+        <span class="icon has-text-info">
+            <i class="fas fa-check-circle"></i>
+        </span>
+        <span>This is a staple meal!</span>
+    </div>
+    {% endif %}
+    {% if recipe.kid_approved %}
+    <div class="icon-text">
+        <span class="icon has-text-info">
+            <i class="fas fa-check-circle"></i>
+        </span>
+        <span>This is a kid approved recipe!</span>
+    </div>
+    {% endif %}
+    {% if recipe.picky_approved %}
+    <div class="icon-text">
+        <span class="icon has-text-info">
+            <i class="fas fa-check-circle"></i>
+        </span>
+        <span>This is a picky eaters approved recipe!</span>
+    </div>
+    {% endif %}
+    {% if recipe.easy_prep %}
+    <div class="icon-text">
+        <span class="icon has-text-info">
+            <i class="fas fa-check-circle"></i>
+        </span>
+        <span>This is a meal that needs little prep and cooking!</span>
+    </div>
+    {% endif %}
+    {% if recipe.sick_friendly %}
+    <div class="icon-text">
+        <span class="icon has-text-info">
+            <i class="fas fa-check-circle"></i>
+        </span>
+        <span>This is a meal you can eat while sick!</span>
+    </div>
+    {% endif %}
+    {% if recipe.low_spoons %}
+    <div class="icon-text">
+        <span class="icon has-text-info">
+            <i class="fas fa-check-circle"></i>
+        </span>
+        <span>This is a low mental spoons recipe!</span>
+    </div>
+    {% endif %}
+    {% if recipe.texture_friendly %}
+    <div class="icon-text">
+        <span class="icon has-text-info">
+            <i class="fas fa-check-circle"></i>
+        </span>
+        <span>This is a texture friendly recipe!</span>
+    </div>
+    {% endif %}
+    {% if recipe.color_friendly %}
+    <div class="icon-text">
+        <span class="icon has-text-info">
+            <i class="fas fa-check-circle"></i>
+        </span>
+        <span>This is a color friendly recipe!</span>
+    </div>
+    {% endif %}
+    {% if recipe.arfid_approved %}
+    <div class="icon-text">
+        <span class="icon has-text-info">
+            <i class="fas fa-check-circle"></i>
+        </span>
+        <span>This is an ARFID safe recipe!</span>
+    </div>
+    {% endif %}
+    {% if recipe.diet_friendly %}
+    <div class="icon-text">
+        <span class="icon has-text-info">
+            <i class="fas fa-check-circle"></i>
+        </span>
+        <span>This is an diet friendly recipe!</span>
+    </div>
+    {% endif %}
+</div>
+<div class="detail__container">
+    <div class="buttons">
+        <a href="{% url 'recipe_update' recipe.pk %}" class="button is-info">
+            <span class="icon">
+                <i class="fas fa-edit"></i>
+            </span>
+        </a>
+        <a href="{% url 'recipe_delete' recipe.pk %}" class="button is-danger">
+            <span class="icon">
+                <i class="fas fa-trash-alt"></i>
+            </span>
+        </a>
+    </div>
+    <div class="home__playlists">
+        <div class="playlist mb-5">
+            <h3 class="title is-3 has-text-success">Ingredients</h3>
+            <hr />
+            {% for food in recipe.foods.all %}
+    
+                    <div class="song">
+                        <span><b>{{food.name}}</b></span>
+                        <span>
+                            <a href="{% url 'recipe_food_assoc' recipe.pk food.pk %}?assoc=remove" class="button is-danger is-outlined">
+                            <span class="icon is-small">
+                                <i class="fas fa-times"></i>
+                            </span>
+                            </a>
+                        </span>
+                    </div>
+
+                    
+    
+                {% endfor %}
+    </div>
+    
+    <hr>
+
+    <div class="detail__about">
+        <h4 class="title is-4">Directions:</h4>
+        <p>{{recipe.directions}}</p>
+    </div>
+    <br>
+    <hr>
+    <div class="home__playlists">
+        <div class="playlist mb-5">
+            <h3 class="title is-3 has-text-success">Cookbooks containing {{recipe.name}}</h3>
+            <hr />
+            {% for cookbook in cookbooks %}
+            <!-- <h6>There are recipes here</h6> -->
+                {% if recipe in cookbook.recipes.all %}
+                    <div class="song">
+                        <span><b><a href="{% url 'cookbook_detail' cookbook.pk %}">{{cookbook.name}}</a></b></span>
+                    </div>
+                {% endif %}
+            {% empty %} 
+                <div class="playlist mb-5">No Cookbooks Use This Recipe!</div>
+            {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

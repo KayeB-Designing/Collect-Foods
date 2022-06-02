@@ -1,0 +1,49 @@
+{% extends 'base.html' %} 
+{% block content %}
+<div class="detail__img">
+    <img src="{{cookbook.image}}" alt="{{cookbook.name}}" />
+</div>
+<div class="detail__name">
+    <h1 class="title">{{cookbook.name}}</h1>
+</div>
+<div class="detail__container">
+    <div class="buttons">
+        <a href="{% url 'cookbook_update' cookbook.pk %}" class="button is-info">
+            <span class="icon">
+                <i class="fas fa-edit"></i>
+            </span>
+        </a>
+        <a href="{% url 'cookbook_delete' cookbook.pk %}" class="button is-danger">
+            <span class="icon">
+                <i class="fas fa-trash-alt"></i>
+            </span>
+        </a>
+    </div>
+    <div class="home__playlists">
+        {% for recipe in cookbook.recipes.all %}
+    
+            <div class="playlist mb-5">
+                <h3 class="title is-3 has-text-success">{{recipe.name}}</h3>
+                <span>
+                    <a href="{% url 'cookbook_recipe_assoc' cookbook.pk recipe.pk %}?assoc=remove" class="button is-danger is-outlined">
+                    <span class="icon is-small">
+                        <i class="fas fa-times"></i>
+                    </span>
+                    </a>
+                </span>
+                <hr />
+                {% for food in recipe.foods.all %}
+    
+                    <div class="song">
+                        <span><b>{{food.name}}</b></span>
+                    </div>
+    
+                {% endfor %}
+            </div>
+        {% empty %} 
+            <div class="playlist mb-5">"There are no recipes in this cookbook"</div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}
