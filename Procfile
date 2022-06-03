@@ -1,1 +1,1 @@
-web: gunicorn collect_foods_app.wsgi
+web: gunicorn collect_foods_project.wsgi
